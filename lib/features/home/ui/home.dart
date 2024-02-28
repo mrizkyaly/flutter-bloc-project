@@ -5,7 +5,6 @@ import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/ui/product_tile.widget.dart';
 import 'package:flutter_bloc_project/features/wishlist/ui/wishlist.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

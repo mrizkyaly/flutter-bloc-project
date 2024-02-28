@@ -2,51 +2,48 @@ class GroceryData {
   static List<Map<String, dynamic>> groceryProducts = [
     {
       'id': "1",
-      'name': 'Apples',
-      'description': 'Fresh and delicious apples',
-      'price': 2.5,
+      'name': 'New Balance 2002R',
+      'color': 'Dark Grey',
+      'description': 'Men\'s Sneaker Shoes',
+      'price': 20.5,
       'imageUrl':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/847px-Red_Apple.jpg'
+          'https://www.newbalance.co.id/media/catalog/product/cache/c1feb3550df60acd013ba17bf29e4991/0/1/01-NEW-BALANCE-FFSSBNEW0-NEWML2002RB-DarkGrey.jpg'
     },
     {
       'id': "2",
-      'name': 'Milk',
-      'description': 'Fresh milk from local farms',
-      'price': 1.75,
+      'name': 'New Balance 2002R',
+      'color': 'Navy',
+      'description': 'Men\'s Sneaker Shoes',
+      'price': 16.75,
       'imageUrl':
-          'https://cdn.britannica.com/77/200377-050-4326767F/milk-splashing-glass.jpg'
+          'https://www.newbalance.co.id/media/catalog/product/cache/c1feb3550df60acd013ba17bf29e4991/0/1/01-NEW-BALANCE-FFSSBNEWA-NEWM2002RSF-Blue.jpg'
     },
     {
       'id': "3",
-      'name': 'Bread',
-      'description': 'Whole grain bread',
-      'price': 3.0,
+      'name': 'New Balance 2002R',
+      'color': 'Grey',
+      'description': 'Men\'s Sneaker Shoes',
+      'price': 17.5,
       'imageUrl':
-          'https://images.unsplash.com/photo-1598373182133-52452f7691ef?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJyZWFkfGVufDB8fDB8fHww'
+          'https://www.newbalance.co.id/media/catalog/product/cache/c1feb3550df60acd013ba17bf29e4991/0/1/01-NEW-BALANCE-FFSSBNEWA-NEWM2002RSH-Grey.jpg'
     },
     {
       'id': "4",
-      'name': 'Eggs',
-      'description': 'Organic eggs',
-      'price': 2.0,
+      'name': 'New Balance 2002R',
+      'color': 'New Navy',
+      'description': 'Men\'s Sneaker Shoes',
+      'price': 22.5,
       'imageUrl':
-          'https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg'
+          'https://www.newbalance.co.id/media/catalog/product/cache/c1feb3550df60acd013ba17bf29e4991/0/8/0888-NEWM2002RXKNAV10H-1.jpg'
     },
     {
       'id': "5",
-      'name': 'Cheese',
-      'description': 'Imported cheese variety',
-      'price': 4.5,
+      'name': 'New Balance 2002R',
+      'color': 'New Grey',
+      'description': 'Men\'s Sneaker Shoes',
+      'price': 18.75,
       'imageUrl':
-          'https://blog.wisconsincheeseman.com/wp-content/uploads/sites/10/2022/10/sharp-cheddar-baby-swiss-1-edited-768x697.jpg.webp'
+          'https://www.newbalance.co.id/media/catalog/product/cache/c1feb3550df60acd013ba17bf29e4991/0/8/0888-NEWM2002RXJGRE10H-1.jpg'
     },
-    {
-      'id': "6",
-      'name': 'Bananas',
-      'description': 'Ripe bananas',
-      'price': 1.0,
-      'imageUrl':
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/2324px-Banana-Single.jpg'
-    }
   ];
 }
