@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc_project/data/cart_items.dart';
 import 'package:flutter_bloc_project/data/grocery_data.dart';
 import 'package:flutter_bloc_project/data/wishlist_items.dart';
 import 'package:flutter_bloc_project/features/home/models/home_product_data_model.dart';
-import 'package:meta/meta.dart';
 
 part 'homes_event.dart';
 part 'homes_state.dart';
@@ -18,12 +18,13 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     on<HomeProductCartButtonClickedEvent>(homeProductCartButtonClickedEvent);
     on<HomeWishlistButtonNavigateEvent>(homeWishlistButtonNavigateEvent);
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
+    on<HomeCardProdukButtonNavigateEvent>(homeCardProdukButtonNavigateEvent);
   }
 
   FutureOr<void> homeInitialEvent(
       HomeInitialEvent event, Emitter<HomesState> emit) async {
     emit(HomeLoadingState());
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     emit(
       HomeLoadedSuccessState(
         products: GroceryData.groceryProducts
@@ -48,15 +49,17 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   }
 
   FutureOr<void> homeProductCartButtonClickedEvent(
-      HomeProductCartButtonClickedEvent event, Emitter<HomesState> emit) {
+      Object event, Emitter<HomesState> emit) {
     print("Cart Product Clicked");
     try {
-      cartItems.add(event.clickedProduct);
+      if (event is HomeProductCartButtonClickedEvent) {
+        cartItems.add(event.clickedProduct);
+      } else {
+        throw ArgumentError('Invalid event type: ${event.runtimeType}');
+      }
     } catch (e) {
-      print(e);
+      print(e.toString());
     }
-
-    //print(event.clickedProduct);
     emit(HomeProductItemChartedActionState());
   }
 
@@ -70,5 +73,11 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
       HomeCartButtonNavigateEvent event, Emitter<HomesState> emit) {
     print("Cart Navigate Clicked");
     emit(HomeNavigateToCartPageActionState());
+  }
+
+  FutureOr<void> homeCardProdukButtonNavigateEvent(
+      HomeCardProdukButtonNavigateEvent event, Emitter<HomesState> emit) {
+    print("Card Product Clicked");
+    emit(HomeNavigateToDetailProductPageActionState());
   }
 }

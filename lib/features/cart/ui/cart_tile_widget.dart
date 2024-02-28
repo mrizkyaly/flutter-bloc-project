@@ -63,30 +63,30 @@ class CartTileWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      TextButton(
+                        onPressed: () {
+                          cartBloc.add(CartRemoveFromCartEvent(
+                              productDataModel: productDataModel));
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor:
+                              primaryColor, // Change to your desired background color
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(50), // Border radius
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ],
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  cartBloc.add(CartRemoveFromCartEvent(
-                      productDataModel: productDataModel));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  elevation: 4, // Shadow spread
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50), // Border radius
-                  ),
-                  shadowColor: shadowPrimaryColor, // Shadow color
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12),
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.white,
-                  ),
-                ),
               ),
             ],
           ),

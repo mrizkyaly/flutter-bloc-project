@@ -5,6 +5,7 @@ sealed class HomesEvent {}
 
 class HomeInitialEvent extends HomesEvent {}
 
+// BUTTON ACTION STATE
 class HomeProductWhishlistButtonClickedEvent extends HomesEvent {
   final ProductDataModel clickedProduct;
 
@@ -17,6 +18,9 @@ class HomeProductCartButtonClickedEvent extends HomesEvent {
   HomeProductCartButtonClickedEvent({required this.clickedProduct});
 }
 
+// NAVIGATE EVENT
 class HomeWishlistButtonNavigateEvent extends HomesEvent {}
 
 class HomeCartButtonNavigateEvent extends HomesEvent {}
+
+class HomeCardProdukButtonNavigateEvent extends HomesEvent {}

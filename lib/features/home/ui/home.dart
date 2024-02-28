@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_project/features/cart/ui/cart.dart';
+import 'package:flutter_bloc_project/features/detail_product/ui/detail_product.dart';
 import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/ui/product_tile.widget.dart';
 import 'package:flutter_bloc_project/features/wishlist/ui/wishlist.dart';
@@ -150,6 +150,9 @@ class _HomeState extends State<Home> {
         } else if (state is HomeNavigateToWishlistPageActionState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Wishlist()));
+        } else if (state is HomeNavigateToDetailProductPageActionState) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DetailProduct()));
         } else if (state is HomeProductItemChartedActionState) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -175,7 +178,9 @@ class _HomeState extends State<Home> {
           case HomeLoadingState:
             return const Scaffold(
                 body: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xffE21836)),
+              ),
             ));
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
@@ -224,7 +229,6 @@ class _HomeState extends State<Home> {
               body: Expanded(
                 child: Container(
                   color: Colors.white,
-                  margin: const EdgeInsets.only(top: 20),
                   child: Column(
                     children: [
                       searchInput(),
@@ -271,10 +275,16 @@ class _HomeState extends State<Home> {
                                     const NeverScrollableScrollPhysics(), // Disable scrolling of ListView.builder
                                 itemCount: successState.products.length,
                                 itemBuilder: (context, index) {
-                                  return ProductTileWidget(
-                                    homeBloc: homeBloc,
-                                    productDataModel:
-                                        successState.products[index],
+                                  return GestureDetector(
+                                    onTap: () {
+                                      homeBloc.add(
+                                          HomeCardProdukButtonNavigateEvent());
+                                    },
+                                    child: ProductTileWidget(
+                                      homeBloc: homeBloc,
+                                      productDataModel:
+                                          successState.products[index],
+                                    ),
                                   );
                                 },
                               ),

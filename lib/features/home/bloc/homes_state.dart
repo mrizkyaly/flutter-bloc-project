@@ -17,10 +17,14 @@ class HomeLoadedSuccessState extends HomesState {
 
 class HomeErrorState extends HomesState {}
 
+// NAVIGATE STATE
 class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 
 class HomeNavigateToCartPageActionState extends HomeActionState {}
 
+class HomeNavigateToDetailProductPageActionState extends HomeActionState {}
+
+//BUTTON ACTION STATE
 class HomeProductItemWishlistedActionState extends HomeActionState {}
 
 class HomeProductItemChartedActionState extends HomeActionState {}
