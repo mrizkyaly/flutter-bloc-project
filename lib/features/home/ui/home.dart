@@ -5,6 +5,7 @@ import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/ui/product_tile.widget.dart';
 import 'package:flutter_bloc_project/features/wishlist/ui/wishlist.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,6 +22,59 @@ class _HomeState extends State<Home> {
   }
 
   final HomesBloc homeBloc = HomesBloc();
+
+  // SEARCH FORM INPUT
+  Widget searchInput() {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.only(
+        top: 20,
+        left: 24,
+        right: 24,
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: borderColor, // Border color
+          width: 1.0, // Border width
+        ),
+        borderRadius: BorderRadius.circular(
+          50,
+        ),
+      ),
+      child: Center(
+        child: Row(
+          children: [
+            Icon(
+              Icons.search,
+              color: iconColor,
+            ),
+            const SizedBox(
+              width: 18,
+            ),
+            Expanded(
+              child: TextFormField(
+                style: inputTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+                decoration: InputDecoration.collapsed(
+                  hintText: 'Your Email Address',
+                  hintStyle: inputTextStyle.copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +121,7 @@ class _HomeState extends State<Home> {
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
+                surfaceTintColor: Colors.transparent,
                 leading: Container(
                   margin: const EdgeInsets.only(left: 20),
                   child: IconButton(
@@ -84,13 +139,6 @@ class _HomeState extends State<Home> {
                 actions: [
                   Container(
                     margin: const EdgeInsets.only(right: 24),
-                    // decoration: BoxDecoration(
-                    //   shape: BoxShape.circle,
-                    //   border: Border.all(
-                    //     color: const Color(0xffEEEEEE), // Border color
-                    //     width: 1.0, // Border width
-                    //   ),
-                    // ),
                     child: IconButton(
                       onPressed: () {
                         homeBloc.add(HomeCartButtonNavigateEvent());
@@ -112,14 +160,27 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              body: ListView.builder(
-                itemCount: successState.products.length,
-                itemBuilder: (context, index) {
-                  return ProductTileWidget(
-                    homeBloc: homeBloc,
-                    productDataModel: successState.products[index],
-                  );
-                },
+              body: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    searchInput(),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: ListView.builder(
+                          itemCount: successState.products.length,
+                          itemBuilder: (context, index) {
+                            return ProductTileWidget(
+                              homeBloc: homeBloc,
+                              productDataModel: successState.products[index],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           case HomeErrorState:
