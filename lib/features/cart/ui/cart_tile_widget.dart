@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_project/features/cart/bloc/carts_bloc.dart';
-import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/models/home_product_data_model.dart';
 
 class CartTileWidget extends StatelessWidget {
@@ -56,7 +55,8 @@ class CartTileWidget extends StatelessWidget {
                   // ),
                   IconButton(
                     onPressed: () {
-                      cartBloc.add(CartRemoveFromCartEvent());
+                      cartBloc.add(CartRemoveFromCartEvent(
+                          productDataModel: productDataModel));
                     },
                     icon: Icon(Icons.delete),
                   ),
