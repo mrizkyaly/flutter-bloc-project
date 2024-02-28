@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_project/features/cart/ui/cart.dart';
 import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
@@ -21,6 +22,67 @@ class _HomeState extends State<Home> {
   }
 
   final HomesBloc homeBloc = HomesBloc();
+
+  // BURRON NOT ACTIVE FILTER
+  Widget buttonNotActiveFilter(String name) {
+    return ElevatedButton(
+      onPressed: () {
+        // Implement filter logic for "All"
+      },
+      style: ElevatedButton.styleFrom(
+        elevation: 0, // Set elevation to 0 to remove shadow
+        backgroundColor: Colors.white, // Set background color to pure white
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+          side: BorderSide(
+              width: 1, color: borderColor), // Border width and color
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 12,
+        ),
+        child: Text(
+          name, // Button text
+          style: inputTextStyle.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // BUTTON ACTIVE FILTER
+  Widget buttonActiveFilter(String name) {
+    return ElevatedButton(
+      onPressed: () {
+        // Implement filter logic for "All"
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primaryColor,
+        elevation: 4, // Tinggi bayangan
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50), // Atur radius sudut
+        ),
+        shadowColor: shadowPrimaryColor, // ShShadow spread
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 12,
+        ),
+        child: Text(
+          name, // Teks tombol
+          style: textButtonPrimaryStyle.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
 
   // SEARCH FORM INPUT
   Widget searchInput() {
@@ -159,26 +221,69 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              body: Container(
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    searchInput(),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        child: ListView.builder(
-                          itemCount: successState.products.length,
-                          itemBuilder: (context, index) {
-                            return ProductTileWidget(
-                              homeBloc: homeBloc,
-                              productDataModel: successState.products[index],
-                            );
-                          },
+              body: Expanded(
+                child: Container(
+                  color: Colors.white,
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      searchInput(),
+                      const SizedBox(height: 20),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              // Filter buttons
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 24),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: buttonActiveFilter('All'),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: buttonNotActiveFilter('Discount'),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: buttonNotActiveFilter('Sales'),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
+                                      child: buttonNotActiveFilter('Running'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // ListView.builder for displaying products
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics:
+                                    const NeverScrollableScrollPhysics(), // Disable scrolling of ListView.builder
+                                itemCount: successState.products.length,
+                                itemBuilder: (context, index) {
+                                  return ProductTileWidget(
+                                    homeBloc: homeBloc,
+                                    productDataModel:
+                                        successState.products[index],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
