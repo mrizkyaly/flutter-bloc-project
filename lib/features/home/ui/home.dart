@@ -151,8 +151,14 @@ class _HomeState extends State<Home> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Wishlist()));
         } else if (state is HomeNavigateToDetailProductPageActionState) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => DetailProduct()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailProduct(
+                productDataModel: state.clickedProduct,
+              ),
+            ),
+          );
         } else if (state is HomeProductItemChartedActionState) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -278,7 +284,9 @@ class _HomeState extends State<Home> {
                                   return GestureDetector(
                                     onTap: () {
                                       homeBloc.add(
-                                          HomeCardProdukButtonNavigateEvent());
+                                          HomeCardProdukButtonNavigateEvent(
+                                              clickedProduct: successState
+                                                  .products[index]));
                                     },
                                     child: ProductTileWidget(
                                       homeBloc: homeBloc,

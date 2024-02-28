@@ -23,4 +23,8 @@ class HomeWishlistButtonNavigateEvent extends HomesEvent {}
 
 class HomeCartButtonNavigateEvent extends HomesEvent {}
 
-class HomeCardProdukButtonNavigateEvent extends HomesEvent {}
+class HomeCardProdukButtonNavigateEvent extends HomesEvent {
+  final ProductDataModel clickedProduct;
+
+  HomeCardProdukButtonNavigateEvent({required this.clickedProduct});
+}

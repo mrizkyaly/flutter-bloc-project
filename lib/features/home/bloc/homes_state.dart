@@ -22,7 +22,11 @@ class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 
 class HomeNavigateToCartPageActionState extends HomeActionState {}
 
-class HomeNavigateToDetailProductPageActionState extends HomeActionState {}
+class HomeNavigateToDetailProductPageActionState extends HomeActionState {
+  final ProductDataModel clickedProduct;
+
+  HomeNavigateToDetailProductPageActionState(this.clickedProduct);
+}
 
 //BUTTON ACTION STATE
 class HomeProductItemWishlistedActionState extends HomeActionState {}

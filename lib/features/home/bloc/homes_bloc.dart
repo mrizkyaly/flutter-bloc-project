@@ -78,6 +78,6 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   FutureOr<void> homeCardProdukButtonNavigateEvent(
       HomeCardProdukButtonNavigateEvent event, Emitter<HomesState> emit) {
     print("Card Product Clicked");
-    emit(HomeNavigateToDetailProductPageActionState());
+    emit(HomeNavigateToDetailProductPageActionState(event.clickedProduct));
   }
 }
