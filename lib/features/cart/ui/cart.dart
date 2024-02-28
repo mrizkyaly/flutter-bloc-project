@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_project/features/cart/bloc/carts_bloc.dart';
 import 'package:flutter_bloc_project/features/cart/ui/cart_tile_widget.dart';
+import 'package:flutter_bloc_project/theme/theme.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -25,9 +26,24 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
-        title: Text('Cart Items'),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        title: Text(
+          'Cart Items',
+          style: titleTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(
+              10.0), // Set the preferred size for the bottom border
+          child: Container(
+            color: borderColor,
+            height: 1.0, // Height of the bottom border
+          ),
+        ),
       ),
       body: BlocConsumer<CartsBloc, CartsState>(
         bloc: cartBloc,
@@ -41,14 +57,17 @@ class _CartState extends State<Cart> {
             case CartSuccessState:
               final successState = state as CartSuccessState;
 
-              return ListView.builder(
-                itemCount: successState.cartItems.length,
-                itemBuilder: (context, index) {
-                  return CartTileWidget(
-                    productDataModel: successState.cartItems[index],
-                    cartBloc: cartBloc,
-                  );
-                },
+              return Container(
+                color: Colors.white,
+                child: ListView.builder(
+                  itemCount: successState.cartItems.length,
+                  itemBuilder: (context, index) {
+                    return CartTileWidget(
+                      productDataModel: successState.cartItems[index],
+                      cartBloc: cartBloc,
+                    );
+                  },
+                ),
               );
             default:
               return SizedBox();

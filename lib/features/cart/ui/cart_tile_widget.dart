@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_project/features/cart/bloc/carts_bloc.dart';
 import 'package:flutter_bloc_project/features/home/models/home_product_data_model.dart';
+import 'package:flutter_bloc_project/theme/theme.dart';
 
 class CartTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
@@ -15,53 +16,78 @@ class CartTileWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: borderColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 200,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(productDataModel.imageUrl),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            productDataModel.name,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          Text(productDataModel.description),
-          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "\$" + productDataModel.price.toString(),
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // IconButton(
-                  //   onPressed: () {
-                  //     cartBloc.add(HomeProductWhishlistButtonClickedEvent(
-                  //         clickedProduct: productDataModel));
-                  //   },
-                  //   icon: Icon(Icons.favorite),
-                  // ),
-                  IconButton(
-                    onPressed: () {
-                      cartBloc.add(CartRemoveFromCartEvent(
-                          productDataModel: productDataModel));
-                    },
-                    icon: Icon(Icons.delete),
+                  // Image
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Image.network(
+                      productDataModel.imageUrl,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // Column of text
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        productDataModel.description,
+                        style: subtitleTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      Text(
+                        productDataModel.name,
+                        style: titleTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "\$${productDataModel.price}",
+                        style: priceTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              )
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  cartBloc.add(CartRemoveFromCartEvent(
+                      productDataModel: productDataModel));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  elevation: 4, // Shadow spread
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50), // Border radius
+                  ),
+                  shadowColor: shadowPrimaryColor, // Shadow color
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ],

@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                 elevation: 0,
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(
-                      20.0), // Set the preferred size for the bottom border
+                      10.0), // Set the preferred size for the bottom border
                   child: Container(
                     color: borderColor,
                     height: 1.0, // Height of the bottom border
