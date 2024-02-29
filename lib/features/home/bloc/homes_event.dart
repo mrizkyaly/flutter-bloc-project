@@ -34,3 +34,9 @@ class HomeSearchProductEvent extends HomesEvent {
 
   HomeSearchProductEvent({required this.query});
 }
+
+class HomeFilteredProductEvent extends HomesEvent {
+  final String filterType;
+
+  HomeFilteredProductEvent({required this.filterType});
+}

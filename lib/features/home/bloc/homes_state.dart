@@ -32,3 +32,9 @@ class HomeNavigateToDetailProductPageActionState extends HomeActionState {
 class HomeProductItemWishlistedActionState extends HomeActionState {}
 
 class HomeProductItemChartedActionState extends HomeActionState {}
+
+class HomeFilteredProductState extends HomesState {
+  final List<ProductDataModel> filteredProducts;
+
+  HomeFilteredProductState({required this.filteredProducts});
+}

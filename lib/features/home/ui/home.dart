@@ -6,6 +6,7 @@ import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/ui/product_tile.widget.dart';
 import 'package:flutter_bloc_project/features/wishlist/ui/wishlist.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
+import 'package:flutter_bloc_project/widgets/button_filter.dart';
 import 'package:flutter_bloc_project/widgets/search_input.dart';
 
 class Home extends StatefulWidget {
@@ -55,84 +56,31 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // BUTTON ACTIVE FILTER
-  Widget buttonActiveFilter(String name) {
-    return ElevatedButton(
-      onPressed: () {
-        // Implement filter logic for "All"
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
-        elevation: 4, // Tinggi bayangan
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50), // Atur radius sudut
-        ),
-        shadowColor: shadowPrimaryColor, // ShShadow spread
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 12,
-        ),
-        child: Text(
-          name, // Teks tombol
-          style: textButtonPrimaryStyle.copyWith(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
-  // SEARCH FORM INPUT
-  // Widget searchInput() {
-  //   return Container(
-  //     height: 50,
-  //     margin: const EdgeInsets.only(
-  //       top: 20,
-  //       left: 24,
-  //       right: 24,
-  //     ),
-  //     padding: const EdgeInsets.symmetric(
-  //       horizontal: 16,
-  //     ),
-  //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       border: Border.all(
-  //         color: borderColor, // Border color
-  //         width: 1.0, // Border width
+  // // BUTTON ACTIVE FILTER
+  // Widget buttonActiveFilter(String name) {
+  //   return ElevatedButton(
+  //     onPressed: () {
+  //       // Implement filter logic for "All"
+  //     },
+  //     style: ElevatedButton.styleFrom(
+  //       backgroundColor: primaryColor,
+  //       elevation: 4, // Tinggi bayangan
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(50), // Atur radius sudut
   //       ),
-  //       borderRadius: BorderRadius.circular(
-  //         50,
-  //       ),
+  //       shadowColor: shadowPrimaryColor, // ShShadow spread
   //     ),
-  //     child: Center(
-  //       child: Row(
-  //         children: [
-  //           Icon(
-  //             Icons.search,
-  //             color: iconColor,
-  //           ),
-  //           const SizedBox(
-  //             width: 18,
-  //           ),
-  //           Expanded(
-  //             child: TextFormField(
-  //               style: inputTextStyle.copyWith(
-  //                 fontSize: 12,
-  //                 fontWeight: FontWeight.normal,
-  //               ),
-  //               decoration: InputDecoration.collapsed(
-  //                 hintText: 'Your Email Address',
-  //                 hintStyle: inputTextStyle.copyWith(
-  //                   fontSize: 12,
-  //                   fontWeight: FontWeight.normal,
-  //                 ),
-  //               ),
-  //             ),
-  //           )
-  //         ],
+  //     child: Padding(
+  //       padding: const EdgeInsets.symmetric(
+  //         vertical: 8,
+  //         horizontal: 12,
+  //       ),
+  //       child: Text(
+  //         name, // Teks tombol
+  //         style: textButtonPrimaryStyle.copyWith(
+  //           fontSize: 12,
+  //           fontWeight: FontWeight.w600,
+  //         ),
   //       ),
   //     ),
   //   );
@@ -252,25 +200,24 @@ class _HomeState extends State<Home> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: buttonActiveFilter('All'),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: buttonNotActiveFilter('Discount'),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: buttonNotActiveFilter('Sales'),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: buttonNotActiveFilter('Running'),
+                                    Row(
+                                      children: [
+                                        ButtonFilter(
+                                          homesBloc: homeBloc,
+                                          name: 'All',
+                                          type: 'All',
+                                        ),
+                                        ButtonFilter(
+                                          homesBloc: homeBloc,
+                                          name: 'Men',
+                                          type: 'Mens',
+                                        ),
+                                        ButtonFilter(
+                                          homesBloc: homeBloc,
+                                          name: 'Women',
+                                          type: 'Womens',
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

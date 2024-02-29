@@ -84,7 +84,7 @@ class ProductTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productDataModel.description,
+                    '${productDataModel.description} / ${productDataModel.type}',
                     style: subtitleTextStyle.copyWith(
                       fontSize: 12,
                       fontWeight: FontWeight.normal,

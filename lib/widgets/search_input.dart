@@ -11,7 +11,7 @@ class SearchInput extends StatelessWidget {
   const SearchInput({
     super.key,
     required this.homesBloc,
-    this.debounceDuration = const Duration(milliseconds: 500),
+    this.debounceDuration = const Duration(milliseconds: 1500),
   });
 
   @override

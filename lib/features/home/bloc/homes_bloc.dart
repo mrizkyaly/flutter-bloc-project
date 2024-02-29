@@ -20,6 +20,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
     on<HomeCardProdukButtonNavigateEvent>(homeCardProdukButtonNavigateEvent);
     on<HomeSearchProductEvent>(homeSearchProductEvent);
+    on<HomeFilteredProductEvent>(homeFilteredProductEvent);
   }
 
   FutureOr<void> homeInitialEvent(
@@ -34,6 +35,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
                   name: index['name'],
                   description: index['description'],
                   price: index['price'],
+                  type: index['type'],
                   imageUrl: index['imageUrl'],
                 ))
             .toList(),
@@ -94,6 +96,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
                   name: index['name'],
                   description: index['description'],
                   price: index['price'],
+                  type: index['type'],
                   imageUrl: index['imageUrl'],
                 ))
             .toList(),
@@ -109,6 +112,35 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
         //emit(HomeNoSearchResultState());
       } else {
         emit(HomeLoadedSuccessState(products: searchResults));
+      }
+    }
+  }
+
+  FutureOr<void> homeFilteredProductEvent(
+      HomeFilteredProductEvent event, Emitter<HomesState> emit) {
+    if (event.filterType.isEmpty || event.filterType == 'All') {
+      // Jika filter kosong atau 'All', emit semua produk
+      emit(HomeLoadedSuccessState(
+        products: GroceryData.groceryProducts
+            .map((index) => ProductDataModel(
+                  id: index['id'],
+                  name: index['name'],
+                  description: index['description'],
+                  price: index['price'],
+                  type: index['type'],
+                  imageUrl: index['imageUrl'],
+                ))
+            .toList(),
+      ));
+    } else {
+      // Jika filter bukan 'All', saring produk berdasarkan tipe
+      if (state is HomeLoadedSuccessState) {
+        final HomeLoadedSuccessState currentState =
+            state as HomeLoadedSuccessState;
+        final List<ProductDataModel> filteredProducts = currentState.products
+            .where((product) => product.type == event.filterType)
+            .toList();
+        emit(HomeLoadedSuccessState(products: filteredProducts));
       }
     }
   }
