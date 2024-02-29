@@ -7,6 +7,7 @@ class ButtonFilter extends StatelessWidget {
   final String type;
   final bool isActive;
   final HomesBloc homesBloc;
+  final VoidCallback onPress;
 
   const ButtonFilter({
     super.key,
@@ -14,6 +15,7 @@ class ButtonFilter extends StatelessWidget {
     required this.type,
     required this.homesBloc,
     this.isActive = false,
+    required this.onPress,
   });
 
   @override
@@ -21,11 +23,7 @@ class ButtonFilter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(right: 8),
       child: ElevatedButton(
-        onPressed: () {
-          homesBloc.add(HomeFilteredProductEvent(
-            filterType: type,
-          ));
-        },
+        onPressed: onPress,
         style: ElevatedButton.styleFrom(
           elevation: 0, // Set elevation to 0 to remove shadow
           backgroundColor: isActive

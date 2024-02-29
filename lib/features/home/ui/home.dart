@@ -25,67 +25,6 @@ class _HomeState extends State<Home> {
 
   final HomesBloc homeBloc = HomesBloc();
 
-  // BURRON NOT ACTIVE FILTER
-  Widget buttonNotActiveFilter(String name) {
-    return ElevatedButton(
-      onPressed: () {
-        // Implement filter logic for "All"
-      },
-      style: ElevatedButton.styleFrom(
-        elevation: 0, // Set elevation to 0 to remove shadow
-        backgroundColor: Colors.white, // Set background color to pure white
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-          side: BorderSide(
-              width: 1, color: borderColor), // Border width and color
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 12,
-        ),
-        child: Text(
-          name, // Button text
-          style: inputTextStyle.copyWith(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
-  // // BUTTON ACTIVE FILTER
-  // Widget buttonActiveFilter(String name) {
-  //   return ElevatedButton(
-  //     onPressed: () {
-  //       // Implement filter logic for "All"
-  //     },
-  //     style: ElevatedButton.styleFrom(
-  //       backgroundColor: primaryColor,
-  //       elevation: 4, // Tinggi bayangan
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(50), // Atur radius sudut
-  //       ),
-  //       shadowColor: shadowPrimaryColor, // ShShadow spread
-  //     ),
-  //     child: Padding(
-  //       padding: const EdgeInsets.symmetric(
-  //         vertical: 8,
-  //         horizontal: 12,
-  //       ),
-  //       child: Text(
-  //         name, // Teks tombol
-  //         style: textButtonPrimaryStyle.copyWith(
-  //           fontSize: 12,
-  //           fontWeight: FontWeight.w600,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomesBloc, HomesState>(
@@ -192,7 +131,6 @@ class _HomeState extends State<Home> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              // Filter buttons
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 padding:
@@ -200,24 +138,35 @@ class _HomeState extends State<Home> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      children: [
-                                        ButtonFilter(
-                                          homesBloc: homeBloc,
-                                          name: 'All',
-                                          type: 'All',
-                                        ),
-                                        ButtonFilter(
-                                          homesBloc: homeBloc,
-                                          name: 'Men',
-                                          type: 'Mens',
-                                        ),
-                                        ButtonFilter(
-                                          homesBloc: homeBloc,
-                                          name: 'Women',
-                                          type: 'Womens',
-                                        ),
-                                      ],
+                                    ButtonFilter(
+                                      homesBloc: homeBloc,
+                                      name: 'All',
+                                      type: 'All',
+                                      onPress: () {
+                                        homeBloc.add(HomeFilteredProductEvent(
+                                          filterType: 'All',
+                                        ));
+                                      },
+                                    ),
+                                    ButtonFilter(
+                                      homesBloc: homeBloc,
+                                      name: 'Men',
+                                      type: 'Mens',
+                                      onPress: () {
+                                        homeBloc.add(HomeFilteredProductEvent(
+                                          filterType: 'Mens',
+                                        ));
+                                      },
+                                    ),
+                                    ButtonFilter(
+                                      homesBloc: homeBloc,
+                                      name: 'Women',
+                                      type: 'Womens',
+                                      onPress: () {
+                                        homeBloc.add(HomeFilteredProductEvent(
+                                          filterType: 'Womens',
+                                        ));
+                                      },
                                     ),
                                   ],
                                 ),

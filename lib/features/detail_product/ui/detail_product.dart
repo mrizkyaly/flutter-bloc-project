@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc_project/features/home/models/home_product_data_model.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
 import 'package:qr_flutter/qr_flutter.dart';
