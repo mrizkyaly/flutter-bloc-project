@@ -27,6 +27,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    bool isFilterActive = false;
+
     return BlocConsumer<HomesBloc, HomesState>(
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
@@ -142,31 +144,47 @@ class _HomeState extends State<Home> {
                                       homesBloc: homeBloc,
                                       name: 'All',
                                       type: 'All',
-                                      onPress: () {
-                                        homeBloc.add(HomeFilteredProductEvent(
-                                          filterType: 'All',
-                                        ));
-                                      },
+                                      index: 0,
+                                      // onPress: () {
+                                      //   homeBloc.add(HomeFilteredProductEvent(
+                                      //     filterType: 'All',
+                                      //   ));
+                                      //   setState(() {
+                                      //     isFilterActive = !isFilterActive;
+                                      //   });
+
+                                      //   print(isFilterActive);
+                                      // },
                                     ),
                                     ButtonFilter(
                                       homesBloc: homeBloc,
                                       name: 'Men',
                                       type: 'Mens',
-                                      onPress: () {
-                                        homeBloc.add(HomeFilteredProductEvent(
-                                          filterType: 'Mens',
-                                        ));
-                                      },
+                                      index: 1,
+                                      // onPress: () {
+                                      //   homeBloc.add(HomeFilteredProductEvent(
+                                      //     filterType: 'Mens',
+                                      //   ));
+                                      //   setState(() {
+                                      //     isFilterActive = !isFilterActive;
+                                      //   });
+                                      //   print(isFilterActive);
+                                      // },
                                     ),
                                     ButtonFilter(
                                       homesBloc: homeBloc,
                                       name: 'Women',
                                       type: 'Womens',
-                                      onPress: () {
-                                        homeBloc.add(HomeFilteredProductEvent(
-                                          filterType: 'Womens',
-                                        ));
-                                      },
+                                      index: 2,
+                                      // onPress: () {
+                                      //   homeBloc.add(HomeFilteredProductEvent(
+                                      //     filterType: 'Womens',
+                                      //   ));
+                                      //   setState(() {
+                                      //     isFilterActive = !isFilterActive;
+                                      //   });
+                                      //   print(isFilterActive);
+                                      // },
                                     ),
                                   ],
                                 ),
