@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc_project/features/home/models/home_product_data_model.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class DetailProduct extends StatelessWidget {
   final ProductDataModel productDataModel;
@@ -122,6 +124,16 @@ class DetailProduct extends StatelessWidget {
                         style: priceTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Center(
+                        child: QrImageView(
+                          data: productDataModel.name,
+                          version: QrVersions.auto,
+                          size: 200.0,
                         ),
                       ),
                     ],

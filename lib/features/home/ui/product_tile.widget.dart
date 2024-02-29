@@ -92,6 +92,7 @@ class ProductTileWidget extends StatelessWidget {
                   ),
                   Text(
                     productDataModel.name,
+                    overflow: TextOverflow.ellipsis,
                     style: titleTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

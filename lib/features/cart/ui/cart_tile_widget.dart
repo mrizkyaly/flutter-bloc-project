@@ -26,6 +26,7 @@ class CartTileWidget extends StatelessWidget {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Image
                   Padding(
@@ -51,6 +52,7 @@ class CartTileWidget extends StatelessWidget {
                       ),
                       Text(
                         productDataModel.name,
+                        overflow: TextOverflow.ellipsis,
                         style: titleTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -63,29 +65,33 @@ class CartTileWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          cartBloc.add(CartRemoveFromCartEvent(
-                              productDataModel: productDataModel));
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor:
-                              primaryColor, // Change to your desired background color
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(50), // Border radius
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
                     ],
                   ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      cartBloc.add(CartRemoveFromCartEvent(
+                          productDataModel: productDataModel));
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor:
+                          primaryColor, // Change to your desired background color
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(50), // Border radius
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  )
                 ],
               ),
             ],
