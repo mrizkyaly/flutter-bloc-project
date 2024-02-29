@@ -19,6 +19,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     on<HomeWishlistButtonNavigateEvent>(homeWishlistButtonNavigateEvent);
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
     on<HomeCardProdukButtonNavigateEvent>(homeCardProdukButtonNavigateEvent);
+    on<HomeSearchProductEvent>(homeSearchProductEvent);
   }
 
   FutureOr<void> homeInitialEvent(
@@ -79,5 +80,36 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
       HomeCardProdukButtonNavigateEvent event, Emitter<HomesState> emit) {
     print("Card Product Clicked");
     emit(HomeNavigateToDetailProductPageActionState(event.clickedProduct));
+  }
+
+  Future<void> homeSearchProductEvent(
+      HomeSearchProductEvent event, Emitter<HomesState> emit) async {
+    if (event.query.isEmpty) {
+      // Check if input is empty
+      // Emit the initial state with all products loaded
+      emit(HomeLoadedSuccessState(
+        products: GroceryData.groceryProducts
+            .map((index) => ProductDataModel(
+                  id: index['id'],
+                  name: index['name'],
+                  description: index['description'],
+                  price: index['price'],
+                  imageUrl: index['imageUrl'],
+                ))
+            .toList(),
+      ));
+    } else if (state is HomeLoadedSuccessState) {
+      final HomeLoadedSuccessState currentState =
+          state as HomeLoadedSuccessState;
+      final List<ProductDataModel> searchResults = currentState.products
+          .where((product) =>
+              product.name.toLowerCase().contains(event.query.toLowerCase()))
+          .toList();
+      if (searchResults.isEmpty) {
+        //emit(HomeNoSearchResultState());
+      } else {
+        emit(HomeLoadedSuccessState(products: searchResults));
+      }
+    }
   }
 }

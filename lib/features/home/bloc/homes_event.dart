@@ -28,3 +28,9 @@ class HomeCardProdukButtonNavigateEvent extends HomesEvent {
 
   HomeCardProdukButtonNavigateEvent({required this.clickedProduct});
 }
+
+class HomeSearchProductEvent extends HomesEvent {
+  final String query;
+
+  HomeSearchProductEvent({required this.query});
+}
