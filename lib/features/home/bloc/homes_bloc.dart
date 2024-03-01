@@ -16,7 +16,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     on<HomeProductWhishlistButtonClickedEvent>(
         homeProductWhishlistButtonClickedEvent);
     on<HomeProductCartButtonClickedEvent>(homeProductCartButtonClickedEvent);
-    on<HomeWishlistButtonNavigateEvent>(homeWishlistButtonNavigateEvent);
+    on<HomeScannerButtonNavigateEvent>(homeScannerButtonNavigateEvent);
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
     on<HomeCardProdukButtonNavigateEvent>(homeCardProdukButtonNavigateEvent);
     on<HomeSearchProductEvent>(homeSearchProductEvent);
@@ -45,10 +45,10 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
 
   FutureOr<void> homeProductWhishlistButtonClickedEvent(
       HomeProductWhishlistButtonClickedEvent event, Emitter<HomesState> emit) {
-    print("Wishlist Product Clicked");
+    print("Scanner Product Clicked");
 
-    wishlistItems.add(event.clickedProduct);
-    emit(HomeProductItemWishlistedActionState());
+    ScannerItems.add(event.clickedProduct);
+    emit(HomeProductItemScanneredActionState());
   }
 
   FutureOr<void> homeProductCartButtonClickedEvent(
@@ -66,10 +66,10 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
     emit(HomeProductItemChartedActionState());
   }
 
-  FutureOr<void> homeWishlistButtonNavigateEvent(
-      HomeWishlistButtonNavigateEvent event, Emitter<HomesState> emit) {
-    print("Wishlist Navigate Clicked");
-    emit(HomeNavigateToWishlistPageActionState());
+  FutureOr<void> homeScannerButtonNavigateEvent(
+      HomeScannerButtonNavigateEvent event, Emitter<HomesState> emit) {
+    print("Scanner Navigate Clicked");
+    emit(HomeNavigateToScannerPageActionState());
   }
 
   FutureOr<void> homeCartButtonNavigateEvent(

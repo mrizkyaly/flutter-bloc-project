@@ -4,7 +4,7 @@ import 'package:flutter_bloc_project/features/cart/ui/cart.dart';
 import 'package:flutter_bloc_project/features/detail_product/ui/detail_product.dart';
 import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/features/home/ui/product_tile.widget.dart';
-import 'package:flutter_bloc_project/features/wishlist/ui/wishlist.dart';
+import 'package:flutter_bloc_project/features/scanner/ui/scanner.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
 import 'package:flutter_bloc_project/widgets/button_filter.dart';
 import 'package:flutter_bloc_project/widgets/search_input.dart';
@@ -35,9 +35,9 @@ class _HomeState extends State<Home> {
         if (state is HomeNavigateToCartPageActionState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const Cart()));
-        } else if (state is HomeNavigateToWishlistPageActionState) {
+        } else if (state is HomeNavigateToScannerPageActionState) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Wishlist()));
+              MaterialPageRoute(builder: (context) => const Scanner()));
         } else if (state is HomeNavigateToDetailProductPageActionState) {
           Navigator.push(
             context,
@@ -56,12 +56,12 @@ class _HomeState extends State<Home> {
               ),
             ),
           );
-        } else if (state is HomeProductItemWishlistedActionState) {
+        } else if (state is HomeProductItemScanneredActionState) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               backgroundColor: Colors.green,
               content: Text(
-                'Item Has Add to WIshlist',
+                'Item Has Add to Scanner',
               ),
             ),
           );
@@ -86,10 +86,10 @@ class _HomeState extends State<Home> {
                   margin: const EdgeInsets.only(left: 20),
                   child: IconButton(
                     onPressed: () {
-                      homeBloc.add(HomeWishlistButtonNavigateEvent());
+                      homeBloc.add(HomeScannerButtonNavigateEvent());
                     },
                     icon: Icon(
-                      Icons.favorite_border_outlined,
+                      Icons.qr_code,
                       color: iconColor,
                     ),
                   ),

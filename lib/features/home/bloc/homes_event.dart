@@ -19,7 +19,7 @@ class HomeProductCartButtonClickedEvent extends HomesEvent {
 }
 
 // NAVIGATE EVENT
-class HomeWishlistButtonNavigateEvent extends HomesEvent {}
+class HomeScannerButtonNavigateEvent extends HomesEvent {}
 
 class HomeCartButtonNavigateEvent extends HomesEvent {}
 

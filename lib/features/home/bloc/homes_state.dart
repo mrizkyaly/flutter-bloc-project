@@ -22,7 +22,7 @@ class HomeErrorState extends HomesState {}
 class HomeNoSearchResultState extends HomesState {}
 
 // NAVIGATE STATE
-class HomeNavigateToWishlistPageActionState extends HomeActionState {}
+class HomeNavigateToScannerPageActionState extends HomeActionState {}
 
 class HomeNavigateToCartPageActionState extends HomeActionState {}
 
@@ -33,7 +33,7 @@ class HomeNavigateToDetailProductPageActionState extends HomeActionState {
 }
 
 //BUTTON ACTION STATE
-class HomeProductItemWishlistedActionState extends HomeActionState {}
+class HomeProductItemScanneredActionState extends HomeActionState {}
 
 class HomeProductItemChartedActionState extends HomeActionState {}
 
