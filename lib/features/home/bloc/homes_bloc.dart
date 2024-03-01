@@ -87,8 +87,6 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
   Future<void> homeSearchProductEvent(
       HomeSearchProductEvent event, Emitter<HomesState> emit) async {
     if (event.query.isEmpty) {
-      // Check if input is empty
-      // Emit the initial state with all products loaded
       emit(HomeLoadedSuccessState(
         products: GroceryData.groceryProducts
             .map((index) => ProductDataModel(
@@ -110,6 +108,7 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
           .toList();
       if (searchResults.isEmpty) {
         //emit(HomeNoSearchResultState());
+        emit(HomeLoadedSuccessState(products: const []));
       } else {
         emit(HomeLoadedSuccessState(products: searchResults));
       }
@@ -133,7 +132,6 @@ class HomesBloc extends Bloc<HomesEvent, HomesState> {
             .toList(),
       ));
     } else {
-      // Jika filter bukan 'All', saring produk berdasarkan tipe
       if (state is HomeLoadedSuccessState) {
         final HomeLoadedSuccessState currentState =
             state as HomeLoadedSuccessState;

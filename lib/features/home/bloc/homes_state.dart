@@ -1,10 +1,12 @@
 part of 'homes_bloc.dart';
 
 @immutable
+// Initial primary State
 sealed class HomesState {}
 
 abstract class HomeActionState extends HomesState {}
 
+// HOME STTE
 final class HomesInitial extends HomesState {}
 
 class HomeLoadingState extends HomesState {}
@@ -16,6 +18,8 @@ class HomeLoadedSuccessState extends HomesState {
 }
 
 class HomeErrorState extends HomesState {}
+
+class HomeNoSearchResultState extends HomesState {}
 
 // NAVIGATE STATE
 class HomeNavigateToWishlistPageActionState extends HomeActionState {}

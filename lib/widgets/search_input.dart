@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_project/features/cart/ui/cart.dart';
 import 'package:flutter_bloc_project/features/home/bloc/homes_bloc.dart';
 import 'package:flutter_bloc_project/theme/theme.dart';
 
@@ -68,8 +69,14 @@ class SearchInput extends StatelessWidget {
 
                   // Setup a new timer
                   debounce = Timer(debounceDuration, () {
-                    // Dispatch the search event after the debounce duration
                     homesBloc.add(HomeSearchProductEvent(query: query));
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Cart()));
+                    });
                   });
                 },
                 // onChanged: (query) {

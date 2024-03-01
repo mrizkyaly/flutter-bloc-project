@@ -27,8 +27,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    bool isFilterActive = false;
-
     return BlocConsumer<HomesBloc, HomesState>(
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
@@ -218,6 +216,12 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
+              ),
+            );
+          case HomeNoSearchResultState:
+            return const Scaffold(
+              body: Center(
+                child: Text('Data product you search not availble'),
               ),
             );
           case HomeErrorState:
