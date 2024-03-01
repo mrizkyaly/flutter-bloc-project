@@ -40,9 +40,9 @@ class _ButtonFilterState extends State<ButtonFilter> {
         },
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: _activeIndex == widget.index
-              ? primaryColor
-              : Colors.white, // Set warna berdasarkan indeks aktif
+          // backgroundColor:
+          //     _activeIndex == widget.index ? primaryColor : Colors.white,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
             side: BorderSide(width: 1, color: borderColor),
@@ -53,10 +53,10 @@ class _ButtonFilterState extends State<ButtonFilter> {
           child: Text(
             widget.name,
             style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: _activeIndex == widget.index ? Colors.white : titleColor,
-            ),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                //color: _activeIndex == widget.index ? Colors.white : titleColor,
+                color: titleColor),
           ),
         ),
       ),
